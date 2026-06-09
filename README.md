@@ -4,6 +4,17 @@ A small Python FastAPI application that audits common HTTP response security hea
 
 The application is intentionally simple because this repository is mainly a CI/CD security demo: tests, static analysis, dependency auditing, CodeQL code scanning, Dependabot, and container publishing with GitHub Actions.
 
+## Evaluator Quick Links
+
+- Repository: [jayceparabellum/secure-cicd-demo](https://github.com/jayceparabellum/secure-cicd-demo)
+- Actions tab: [GitHub Actions runs](https://github.com/jayceparabellum/secure-cicd-demo/actions)
+- Latest successful CI run: [CI #27241342714](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27241342714)
+- Latest successful CodeQL run: [CodeQL #27241342713](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27241342713)
+- Latest successful container release run: [Release Container #27241342729](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27241342729)
+- Published container image: [GHCR package](https://github.com/jayceparabellum/secure-cicd-demo/pkgs/container/secure-cicd-demo)
+- API docs when running locally: `http://127.0.0.1:8000/docs`
+- Main endpoint to review: `POST /analyze`
+
 ## What The App Does
 
 `POST /analyze` accepts a JSON object containing HTTP response headers and returns:
@@ -89,7 +100,7 @@ This repository uses GitHub Actions:
 
 - `.github/workflows/ci.yml` runs Ruff, Bandit, pytest, and `pip-audit`.
 - `.github/workflows/codeql.yml` runs CodeQL static analysis for Python and uploads code scanning results.
-- `.github/workflows/release-container.yml` builds and publishes a container image to GitHub Container Registry.
+- `.github/workflows/release-container.yml` builds the container image, scans it with Trivy, publishes it to GitHub Container Registry, and attests the published image digest.
 - `.github/dependabot.yml` keeps Python dependencies and GitHub Actions updated.
 
 The workflows use least-privilege `GITHUB_TOKEN` permissions and do not require custom repository secrets.
@@ -113,12 +124,17 @@ ghcr.io/jayceparabellum/secure-cicd-demo:1.0.0
 
 If anonymous pull access is required for review, the first GHCR package may need to be made public in GitHub's package settings after it is created.
 
+The release workflow also publishes build provenance and SBOM attestations for the image. After the image is pushed, GitHub records an artifact attestation for the published image digest.
+
 ## Security Choices
 
 - The app analyzes caller-supplied headers only and does not fetch URLs, reducing SSRF risk.
 - CI uses Bandit for Python security linting.
 - CI uses `pip-audit` for known vulnerable Python dependencies.
 - CodeQL provides static code analysis and code scanning alerts.
+- The release workflow scans the built container image with Trivy before pushing to GHCR.
+- The Trivy action is pinned to a full commit SHA to reduce third-party action supply-chain risk.
+- The release workflow publishes SBOM/provenance metadata and records a GitHub artifact attestation for the image digest.
 - The Docker container runs as a non-root user.
 - GitHub Actions workflows declare least-privilege permissions.
 - Dependabot monitors Python dependencies and GitHub Actions.
