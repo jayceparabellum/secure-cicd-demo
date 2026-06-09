@@ -1,6 +1,12 @@
 .git
 .github
+docs
+tests
+.cache
+cache
 .pytest_cache
+.ruff_cache
+.mypy_cache
 __pycache__
 *.pyc
 *.pyo
@@ -9,5 +15,8 @@ __pycache__
 .env
 .venv
 venv
+env
+ENV
+*.egg-info
 dist
 build
