@@ -89,7 +89,7 @@ This repository uses GitHub Actions:
 
 - `.github/workflows/ci.yml` runs Ruff, Bandit, pytest, and `pip-audit`.
 - `.github/workflows/codeql.yml` runs CodeQL static analysis for Python and uploads code scanning results.
-- `.github/workflows/release-container.yml` builds and publishes a container image to GitHub Container Registry.
+- `.github/workflows/release-container.yml` builds the container image, scans it with Trivy, and publishes it to GitHub Container Registry.
 - `.github/dependabot.yml` keeps Python dependencies and GitHub Actions updated.
 
 The workflows use least-privilege `GITHUB_TOKEN` permissions and do not require custom repository secrets.
@@ -119,6 +119,8 @@ If anonymous pull access is required for review, the first GHCR package may need
 - CI uses Bandit for Python security linting.
 - CI uses `pip-audit` for known vulnerable Python dependencies.
 - CodeQL provides static code analysis and code scanning alerts.
+- The release workflow scans the built container image with Trivy before pushing to GHCR.
+- The Trivy action is pinned to a full commit SHA to reduce third-party action supply-chain risk.
 - The Docker container runs as a non-root user.
 - GitHub Actions workflows declare least-privilege permissions.
 - Dependabot monitors Python dependencies and GitHub Actions.
