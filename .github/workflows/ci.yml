@@ -44,7 +44,7 @@ jobs:
         run: bandit -r app -ll
 
       - name: Run tests
-        run: pytest -q
+        run: python -m pytest -q
 
       - name: Audit runtime dependencies
         run: pip-audit -r requirements.txt
