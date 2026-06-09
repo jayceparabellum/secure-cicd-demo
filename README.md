@@ -4,6 +4,17 @@ A small Python FastAPI application that audits common HTTP response security hea
 
 The application is intentionally simple because this repository is mainly a CI/CD security demo: tests, static analysis, dependency auditing, CodeQL code scanning, Dependabot, and container publishing with GitHub Actions.
 
+## Evaluator Quick Links
+
+- Repository: [jayceparabellum/secure-cicd-demo](https://github.com/jayceparabellum/secure-cicd-demo)
+- Actions tab: [GitHub Actions runs](https://github.com/jayceparabellum/secure-cicd-demo/actions)
+- Latest successful CI run: [CI #27241342714](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27241342714)
+- Latest successful CodeQL run: [CodeQL #27241342713](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27241342713)
+- Latest successful container release run: [Release Container #27241342729](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27241342729)
+- Published container image: [GHCR package](https://github.com/jayceparabellum/secure-cicd-demo/pkgs/container/secure-cicd-demo)
+- API docs when running locally: `http://127.0.0.1:8000/docs`
+- Main endpoint to review: `POST /analyze`
+
 ## What The App Does
 
 `POST /analyze` accepts a JSON object containing HTTP response headers and returns:
