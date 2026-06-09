@@ -89,7 +89,7 @@ This repository uses GitHub Actions:
 
 - `.github/workflows/ci.yml` runs Ruff, Bandit, pytest, and `pip-audit`.
 - `.github/workflows/codeql.yml` runs CodeQL static analysis for Python and uploads code scanning results.
-- `.github/workflows/release-container.yml` builds the container image, scans it with Trivy, and publishes it to GitHub Container Registry.
+- `.github/workflows/release-container.yml` builds the container image, scans it with Trivy, publishes it to GitHub Container Registry, and attests the published image digest.
 - `.github/dependabot.yml` keeps Python dependencies and GitHub Actions updated.
 
 The workflows use least-privilege `GITHUB_TOKEN` permissions and do not require custom repository secrets.
@@ -113,6 +113,8 @@ ghcr.io/jayceparabellum/secure-cicd-demo:1.0.0
 
 If anonymous pull access is required for review, the first GHCR package may need to be made public in GitHub's package settings after it is created.
 
+The release workflow also publishes build provenance and SBOM attestations for the image. After the image is pushed, GitHub records an artifact attestation for the published image digest.
+
 ## Security Choices
 
 - The app analyzes caller-supplied headers only and does not fetch URLs, reducing SSRF risk.
@@ -121,6 +123,7 @@ If anonymous pull access is required for review, the first GHCR package may need
 - CodeQL provides static code analysis and code scanning alerts.
 - The release workflow scans the built container image with Trivy before pushing to GHCR.
 - The Trivy action is pinned to a full commit SHA to reduce third-party action supply-chain risk.
+- The release workflow publishes SBOM/provenance metadata and records a GitHub artifact attestation for the image digest.
 - The Docker container runs as a non-root user.
 - GitHub Actions workflows declare least-privilege permissions.
 - Dependabot monitors Python dependencies and GitHub Actions.
