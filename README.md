@@ -139,6 +139,18 @@ The release workflow also publishes build provenance and SBOM attestations for t
 - GitHub Actions workflows declare least-privilege permissions.
 - Dependabot monitors Python dependencies and GitHub Actions.
 
+## Repository Hardening
+
+The repository is configured with additional GitHub security controls:
+
+- `main` uses branch protection with pull requests required before merge.
+- CI and CodeQL checks are required before protected-branch updates.
+- Force pushes and branch deletion are blocked on `main`.
+- Dependabot alerts and security updates are enabled.
+- Secret scanning and push protection are enabled.
+- Default GitHub Actions token permissions are read-only at the repository level.
+- The GHCR publishing job uses a `ghcr` environment for future deployment protection rules.
+
 ## Reproduce The Pipeline
 
 1. Open a pull request to run CI and CodeQL on the proposed change.
