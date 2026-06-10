@@ -34,13 +34,16 @@ On smaller screens, the layout collapses into a single column so the tool remain
 
 ## Visual Style
 
-The design uses a restrained palette:
+The current UI uses `docs/design-reference-linear.md`, downloaded from `jayceparabellum/awesome-design-md`, as its main visual reference. The goal is not to copy Linear as a brand, but to borrow the useful product-design pattern: a dark technical workspace, quiet panels, crisp borders, and one intentional accent color.
 
-- white panels on a light gray-blue background
-- teal as the primary action and score color
+The design uses a restrained dark palette:
+
+- near-black page background
+- charcoal working surfaces
+- lavender-blue as the primary action and score color
 - green, amber, and red status colors for passed, weak, and missing findings
 
-Panels use small-radius borders, clear spacing, and simple status badges so the page reads like an operational security utility.
+Panels use small-radius borders, clear spacing, and simple status badges so the page reads like an operational security utility rather than a marketing page.
 
 ## Interaction Model
 
