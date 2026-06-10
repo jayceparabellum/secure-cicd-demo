@@ -10,7 +10,9 @@ def test_read_root() -> None:
     response = client.get("/")
 
     assert response.status_code == 200
-    assert response.json()["app"] == "Security Headers Auditor"
+    assert "text/html" in response.headers["content-type"]
+    assert "Security Headers Auditor" in response.text
+    assert "Analyze Headers" in response.text
 
 
 def test_health_check() -> None:

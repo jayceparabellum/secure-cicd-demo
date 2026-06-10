@@ -1,6 +1,6 @@
 # Secure CI/CD Demo
 
-A small Python FastAPI application that audits common HTTP response security headers.
+A small Python FastAPI application with a browser UI that audits common HTTP response security headers.
 
 The application is intentionally simple because this repository is mainly a CI/CD security demo: tests, static analysis, dependency auditing, CodeQL code scanning, Dependabot, and container publishing with GitHub Actions.
 
@@ -12,6 +12,7 @@ The application is intentionally simple because this repository is mainly a CI/C
 - Recent successful CodeQL run: [CodeQL #27243381534](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381534)
 - Recent successful container release run: [Release Container #27243381521](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381521)
 - Published container image: [GHCR package](https://github.com/jayceparabellum/secure-cicd-demo/pkgs/container/secure-cicd-demo)
+- Browser UI when running locally: `http://127.0.0.1:8000`
 - API docs when running locally: `http://127.0.0.1:8000/docs`
 - Main endpoint to review: `POST /analyze`
 
@@ -52,7 +53,7 @@ pip install -r requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000` or check `http://127.0.0.1:8000/health`.
+Open `http://127.0.0.1:8000` to use the browser UI, or check `http://127.0.0.1:8000/health`.
 
 ## Example Request
 
