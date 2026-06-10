@@ -46,21 +46,25 @@ INDEX_HTML = """
     <title>Security Headers Auditor</title>
     <style>
       :root {
-        color-scheme: light;
-        --bg: #f5f7fb;
-        --panel: #ffffff;
-        --ink: #18202f;
-        --muted: #667085;
-        --line: #d9e0ea;
-        --accent: #0f766e;
-        --accent-strong: #0b5f59;
-        --warn: #b45309;
-        --bad: #b42318;
-        --good: #087443;
-        --soft-good: #e8f7ef;
-        --soft-warn: #fff4df;
-        --soft-bad: #ffefed;
-        --shadow: 0 20px 50px rgba(24, 32, 47, 0.08);
+        color-scheme: dark;
+        --bg: #010102;
+        --surface: #0f1011;
+        --surface-raised: #141516;
+        --surface-soft: #18191a;
+        --ink: #f7f8f8;
+        --muted: #d0d6e0;
+        --subtle: #8a8f98;
+        --line: #2a2c31;
+        --line-strong: #3b3e46;
+        --accent: #5e6ad2;
+        --accent-strong: #828fff;
+        --warn: #f0b15a;
+        --bad: #f97066;
+        --good: #32d583;
+        --soft-good: rgba(50, 213, 131, 0.12);
+        --soft-warn: rgba(240, 177, 90, 0.13);
+        --soft-bad: rgba(249, 112, 102, 0.13);
+        --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
       }
 
       * {
@@ -70,8 +74,7 @@ INDEX_HTML = """
       body {
         margin: 0;
         min-height: 100vh;
-        background:
-          linear-gradient(180deg, #eef3f8 0%, var(--bg) 44%, #ffffff 100%);
+        background: var(--bg);
         color: var(--ink);
         font-family:
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -80,7 +83,7 @@ INDEX_HTML = """
 
       header {
         border-bottom: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.84);
+        background: rgba(1, 1, 2, 0.92);
         backdrop-filter: blur(14px);
       }
 
@@ -113,6 +116,7 @@ INDEX_HTML = """
         background: var(--accent);
         color: #ffffff;
         font-weight: 800;
+        box-shadow: 0 0 34px rgba(94, 106, 210, 0.38);
       }
 
       h1 {
@@ -123,7 +127,7 @@ INDEX_HTML = """
 
       .subtle {
         margin: 4px 0 0;
-        color: var(--muted);
+        color: var(--subtle);
         font-size: 14px;
       }
 
@@ -135,7 +139,7 @@ INDEX_HTML = """
         padding: 0 12px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
+        background: var(--surface);
         color: var(--muted);
         font-size: 14px;
         white-space: nowrap;
@@ -145,7 +149,7 @@ INDEX_HTML = """
         width: 9px;
         height: 9px;
         border-radius: 999px;
-        background: #98a2b3;
+        background: var(--subtle);
       }
 
       .dot.ok {
@@ -153,7 +157,7 @@ INDEX_HTML = """
       }
 
       main {
-        padding: 36px 0 44px;
+        padding: 32px 0 44px;
       }
 
       .layout {
@@ -166,7 +170,7 @@ INDEX_HTML = """
       .panel {
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: var(--panel);
+        background: var(--surface);
         box-shadow: var(--shadow);
       }
 
@@ -192,7 +196,7 @@ INDEX_HTML = """
       label {
         display: block;
         margin-bottom: 8px;
-        color: #344054;
+        color: var(--muted);
         font-size: 14px;
         font-weight: 650;
       }
@@ -200,9 +204,9 @@ INDEX_HTML = """
       input,
       textarea {
         width: 100%;
-        border: 1px solid #cbd5e1;
+        border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
+        background: #090a0b;
         color: var(--ink);
         font: inherit;
         outline: none;
@@ -226,7 +230,7 @@ INDEX_HTML = """
       input:focus,
       textarea:focus {
         border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+        box-shadow: 0 0 0 3px rgba(94, 106, 210, 0.24);
       }
 
       .field {
@@ -246,10 +250,10 @@ INDEX_HTML = """
         justify-content: center;
         min-height: 40px;
         padding: 0 14px;
-        border: 1px solid #cbd5e1;
+        border: 1px solid var(--line-strong);
         border-radius: 8px;
-        background: #ffffff;
-        color: #344054;
+        background: var(--surface-raised);
+        color: var(--ink);
         cursor: pointer;
         font: inherit;
         font-weight: 650;
@@ -263,12 +267,13 @@ INDEX_HTML = """
       }
 
       button.primary:hover {
+        border-color: var(--accent-strong);
         background: var(--accent-strong);
       }
 
       button:hover,
       a.button:hover {
-        border-color: #94a3b8;
+        border-color: var(--accent);
       }
 
       .score-card {
@@ -285,7 +290,8 @@ INDEX_HTML = """
         place-items: center;
         border-radius: 50%;
         background:
-          conic-gradient(var(--accent) calc(var(--score) * 1%), #e6ebf2 0);
+          conic-gradient(var(--accent) calc(var(--score) * 1%), #24262d 0);
+        box-shadow: 0 0 44px rgba(94, 106, 210, 0.22);
       }
 
       .score-inner {
@@ -294,7 +300,7 @@ INDEX_HTML = """
         height: 98px;
         place-items: center;
         border-radius: 50%;
-        background: #ffffff;
+        background: var(--surface);
         box-shadow: inset 0 0 0 1px var(--line);
       }
 
@@ -314,7 +320,7 @@ INDEX_HTML = """
         padding: 12px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #fafbfc;
+        background: var(--surface-raised);
       }
 
       .metric strong {
@@ -337,7 +343,7 @@ INDEX_HTML = """
         padding: 14px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
+        background: var(--surface-raised);
       }
 
       .finding-top {
@@ -379,7 +385,7 @@ INDEX_HTML = """
 
       .finding p {
         margin: 10px 0 0;
-        color: var(--muted);
+        color: var(--subtle);
         font-size: 14px;
         line-height: 1.45;
       }
@@ -388,18 +394,18 @@ INDEX_HTML = """
         display: none;
         margin-top: 12px;
         padding: 12px;
-        border: 1px solid #fecaca;
+        border: 1px solid rgba(249, 112, 102, 0.45);
         border-radius: 8px;
-        background: #fff1f2;
+        background: var(--soft-bad);
         color: var(--bad);
         font-size: 14px;
       }
 
       .empty {
-        border: 1px dashed #cbd5e1;
+        border: 1px dashed var(--line-strong);
         border-radius: 8px;
         padding: 22px;
-        color: var(--muted);
+        color: var(--subtle);
         text-align: center;
       }
 
