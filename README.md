@@ -8,9 +8,9 @@ The application is intentionally simple because this repository is mainly a CI/C
 
 - Repository: [jayceparabellum/secure-cicd-demo](https://github.com/jayceparabellum/secure-cicd-demo)
 - Actions tab: [GitHub Actions runs](https://github.com/jayceparabellum/secure-cicd-demo/actions)
-- Latest successful CI run: [CI #27243381545](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381545)
-- Latest successful CodeQL run: [CodeQL #27243381534](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381534)
-- Latest successful container release run: [Release Container #27243381521](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381521)
+- Recent successful CI run: [CI #27243381545](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381545)
+- Recent successful CodeQL run: [CodeQL #27243381534](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381534)
+- Recent successful container release run: [Release Container #27243381521](https://github.com/jayceparabellum/secure-cicd-demo/actions/runs/27243381521)
 - Published container image: [GHCR package](https://github.com/jayceparabellum/secure-cicd-demo/pkgs/container/secure-cicd-demo)
 - API docs when running locally: `http://127.0.0.1:8000/docs`
 - Main endpoint to review: `POST /analyze`
